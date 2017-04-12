@@ -10,7 +10,9 @@ RUN sed -i '/^#\[multilib\]/ {s/^#//;n;s/^#//}' /etc/pacman.conf
 RUN pacman --noconfirm -Syy
 RUN pacman --noconfirm --needed -S sudo base-devel
 
+# passwordless root through sudo for wheel group
 RUN sed -i '/^#.*NOPASSWD/s/^# //' /etc/sudoers
+
 RUN useradd -G wheel -m builder
 
 USER builder
