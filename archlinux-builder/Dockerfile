@@ -4,6 +4,9 @@
 FROM archlinux
 MAINTAINER George Angelopoulos
 
+# enable multilib repo
+RUN sed -i '/^#\[multilib\]/ {s/^#//;n;s/^#//}' /etc/pacman.conf
+
 RUN pacman --noconfirm -Syy
 RUN pacman --noconfirm --needed -S sudo base-devel
 
